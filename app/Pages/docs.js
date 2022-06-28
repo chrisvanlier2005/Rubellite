@@ -15,7 +15,7 @@ function App(){
 }
 
 
-window.history.pushState({}, "", "/Rubellite/");
+window.history.pushState({}, "", "/Rubellite/docs");
 VirtualDom.render("app", Compiler.toObject(App()));
 
 document.querySelectorAll(".addOne").forEach(element => {
