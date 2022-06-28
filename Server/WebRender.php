@@ -1,21 +1,16 @@
 <?php
 class WebRender{
+
+    /**
+     * It includes the main php file and sets the js post to the view to be included
+     *
+     * @param view the name of the view to be rendered
+     * @param data an array of data to be passed to the view
+     */
     public static function render($view, $data = []){
-        // check if the request method is POST
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
-        if($requestMethod == 'POST') {
-            // return the page as plain texts
-            self::renderFromLink();
-        } else{
-            // include the php file
-            $_POST['js'] = $view;
-            include_once 'public/Main.php';
-        }
-
+        // include the php file and set the js post to the view to be included
+        $_POST['js'] = $view;
+        include_once 'public/Main.php';
     }
 
-    public static function renderFromLink(){
-        // get the page as javascript
-
-    }
 }

@@ -3,9 +3,12 @@ import Header from "../Components/Header.js";
 import {Link} from "../framework/Link.js";
 
 let Main = `
-<div class="test">
+<div class="rootElement">   
     ${Header()}
-    <p>over mij</p>
+    <div class="container">
+        <h1>Over mij</h1>    
+    </div>
+    <img src="public/img/image.jpg" alt="">
 </div>
 `;
 
