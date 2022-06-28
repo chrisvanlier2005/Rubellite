@@ -9,7 +9,7 @@ export class VirtualDom {
     static render(rootId, data) {
         this.root = rootId;
         let rootElement = document.getElementById(rootId);
-        console.log(data)
+
         // render root element
         rootElement.innerHTML = '';
         rootElement.appendChild(VirtualDom.elementRender(data));
@@ -85,7 +85,6 @@ export class Compiler {
             child = Compiler.childNodeToObject(child);
             result.children.push(child);
         }
-        console.log(result);
         return result;
     }
     static childNodeToObject(childNode) {
@@ -148,10 +147,8 @@ export class LinkHandler {
         // removing it from the html
         let scriptElement = document.querySelector('script');
         scriptElement.remove();
-
         // adding the script to the html
         let scriptEl = document.createElement('script');
-        console.log(src);
         scriptEl.src = src;
         scriptEl.type = 'module';
         document.body.appendChild(scriptEl);
