@@ -15,6 +15,7 @@ ${Layout(`
 window.history.pushState({}, "", "/Rubellite/docs");
 VirtualDom.render("app", Compiler.toObject(App));
 
+
 document.querySelectorAll(".addOne").forEach(element => {
     element.addEventListener("click", () => {
             x.set(x.getValue() + 1);

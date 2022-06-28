@@ -21,7 +21,6 @@ let Header = () => {
         }
         .header a:hover{
             color: #4f4fff;
-            
         }
     </style>
     <div class="header">

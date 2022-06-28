@@ -1,5 +1,3 @@
-import { Compiler, VirtualDom } from "./framework.js";
-
 /**
  * It returns a string of HTML that contains a link with a random id and a data attribute
  * @param props - An object containing the properties of the component.
