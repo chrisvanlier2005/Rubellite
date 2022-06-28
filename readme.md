@@ -1,4 +1,8 @@
 # Rubellite
+a Simple PHP & JS library for building web applications.
+Inspired by Laravel & Ruby on Rails.
+
+
 <img src="public/img/logo.png" width="300">
 
 
