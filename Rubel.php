@@ -15,8 +15,16 @@ switch ($_GET["fn"]){
  */
 function createRoute(){
     if (!isset($_GET['name'])) {
-        echo "Please pass the name property\n";
-        die('Killed execution');
+        echo "Rubel: You forgot to pass the name!\n";
+        echo "Rubel: What should be the name?\n";
+        $handle = fopen ("php://stdin","r");
+        $_GET['name'] = trim(fgets($handle));
+        if($_GET['name'] == ""){
+            echo "Aborting Operation!\n";
+            die();
+            exit();
+        }
+        echo "Rubel: Thanks, continuing operation...\n";
     }
     $path = dirname(__FILE__).'\index.php';
 
@@ -71,5 +79,5 @@ VirtualDom.setPageTitle('$name');
     ";
     fwrite($filepath, $standard);
     fclose($filepath);
-    echo "Route $name created successfully";
+    echo "Rubel: I've created the Route $name and file $name.js successfully!";
 }

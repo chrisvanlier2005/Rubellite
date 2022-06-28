@@ -27,3 +27,8 @@ Route::prefix('/api', function (){
 $timer = microtime(true) - $timer;
 // echo '<br>Time taken to load the website: ' . $timer . ' seconds.';
 
+
+
+Route::get('/posts', function(){
+    WebRender::render('posts');
+});
