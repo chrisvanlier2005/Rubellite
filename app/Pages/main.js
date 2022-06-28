@@ -37,4 +37,4 @@ document.querySelectorAll(".addOne").forEach(element => {
 
 
 
-VirtualDom.setPageTitle("Hello World");
+VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");

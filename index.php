@@ -10,12 +10,8 @@ Route::get('/', function(){
     WebRender::render('main');
 });
 
-Route::get('/contact', function(){
-    WebRender::render('contact');
-});
-
-Route::get('/about', function(){
-    WebRender::render('about');
+Route::get('/docs', function(){
+    WebRender::render('docs');
 });
 
 $timer = microtime(true) - $timer;
