@@ -14,5 +14,11 @@
 <div id="app">
 
 </div>
+<script>
+    <!-- These are the php props -->
+    <?php foreach ($_POST["props"] as $key => $value): ?>
+      let <?= $key ?> = "<?= $value ?>";
+    <?php endforeach; ?>
+</script>
 </body>
 </html>

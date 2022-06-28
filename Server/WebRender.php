@@ -10,6 +10,7 @@ class WebRender{
     public static function render($view, $data = []){
         // include the php file and set the js post to the view to be included
         $_POST['js'] = $view;
+        $_POST['props'] = $data;
         include_once 'public/Main.php';
     }
 

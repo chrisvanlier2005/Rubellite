@@ -145,8 +145,10 @@ export class LinkHandler {
         src = src[1]
         src = src + "?_=" + new Date().getTime();
         // removing it from the html
-        let scriptElement = document.querySelector('script');
+        let scriptElement = document.querySelector('script[src]');
+        console.log(scriptElement)
         scriptElement.remove();
+
         // adding the script to the html
         let scriptEl = document.createElement('script');
         scriptEl.src = src;
@@ -177,4 +179,4 @@ export class Reactible{
     }
 }
 
-export default {VirtualDom, Compiler, LinkHandler};
+export default {VirtualDom, Compiler, LinkHandler, Reactible };

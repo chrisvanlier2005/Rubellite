@@ -11,7 +11,7 @@ body{
 .rootElement .container{
     padding: 1rem;
 }
- .center{
+.center{
      position: absolute;
      top: 50%;
      left: 50%;
@@ -21,10 +21,33 @@ body{
      flex-direction: column;
      align-items: center;
      justify-content: center;
- }
+}
 .center h1{
     width: fit-content;
 }
 .center img{
     width: 200px;
+}
+.error{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.error .message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.error img{
+    width: 200px;
+}
+.context{
+    height: 200px;
+    overflow-y: scroll;
 }
