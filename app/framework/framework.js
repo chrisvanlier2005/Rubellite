@@ -138,24 +138,30 @@ export class LinkHandler {
         let rubelite = event.target.dataset.rubelite;
         let response = await fetch(location);
         let html = await response.text();
-
         // getting the page script
         let script = html.match(/<script[^>]*>([\s\S]*?)<\/script>/gi);
-        console.log(script);
+
 
         let src = script[0].match(/src="([^"]*)"/i);
         src = src[1]
         src = src + "?_=" + new Date().getTime();
         // removing it from the html
         let scriptElement = document.querySelector('script[src]');
-        console.log(scriptElement)
+
         scriptElement.remove();
 
-        // adding the script to the html
+        // get the div with the id of app out of the html
+        let app = html.match(/<div id="app"[^>]*>([\s\S]*?)<\/div>/gi);
+        app = app[0];
+
+        let props = Compiler.toObject(app).attributes['data-rubellite-props'];
+
         let scriptEl = document.createElement('script');
         scriptEl.src = src;
         scriptEl.type = 'module';
+        document.querySelector('#app').setAttribute('data-rubellite-props', props);
         document.body.appendChild(scriptEl);
+
     }
 }
 
@@ -195,6 +201,24 @@ export function Props(name){
     let props = document.querySelector('#app')
     props = props.getAttribute("data-rubellite-props");
     props = JSON.parse(props);
+    console.log(props);
+
+    if (name.indexOf(".") > -1){
+        let values = name.split(".");
+        let value = props;
+        for (let i = 0; i < values.length; i++) {
+            value = value[values[i]];
+        }
+        if (value === undefined){
+            throw new Error(`The property ${name} does not exist in the data-rubellite-props`);
+        }
+        return value;
+    }
+
+    if (props[name] === undefined){
+        throw new Error(`The property ${name} does not exist in the data-rubellite-props`);
+    }
+
     return props[name];
 }
 

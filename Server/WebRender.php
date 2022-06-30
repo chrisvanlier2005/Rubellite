@@ -11,7 +11,8 @@ class WebRender{
         // include the php file and set the js post to the view to be included
         $_POST['js'] = $view;
         $configVariables = Config::$app;
-        $data += $configVariables;
+        $data['config'] = $configVariables;
+        $data['config']['other']['timer'] = microtime(true);
         $_POST['props'] = $data;
         include_once 'public/Main.php';
     }

@@ -14,7 +14,6 @@
 
 </div>
 <script>
-    let props
 </script>
 </body>
 </html>

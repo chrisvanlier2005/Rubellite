@@ -5,7 +5,7 @@ AddErrorHandler()
 
 // Reactible variables
 let x = new Reactible(1)
-let name = Props('name');
+
 function App(){
    return `
     ${Layout(` 
@@ -37,8 +37,10 @@ document.querySelectorAll(".addOne").forEach(element => {
         }
     );
 });
+
+
 let end = new Date().getTime();
-console.log(`Time: ${end - start}ms`);
+console.log(`Runtime completed in: ${end - start}ms`);
 
 
 VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");
