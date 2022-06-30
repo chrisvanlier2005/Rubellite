@@ -10,6 +10,8 @@ class WebRender{
     public static function render($view, $data = []){
         // include the php file and set the js post to the view to be included
         $_POST['js'] = $view;
+        $configVariables = Config::$app;
+        $data += $configVariables;
         $_POST['props'] = $data;
         include_once 'public/Main.php';
     }
