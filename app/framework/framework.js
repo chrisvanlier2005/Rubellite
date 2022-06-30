@@ -1,3 +1,4 @@
+
 /* It renders a virtual DOM tree to the real DOM */
 export class VirtualDom {
     /**
@@ -8,7 +9,14 @@ export class VirtualDom {
     static root = undefined;
     static render(rootId, data) {
         this.root = rootId;
-        let rootElement = document.getElementById(rootId);
+        let rootElement;
+        if (rootId.substring(0, 1) === ".") {
+            console.log("rootId is a class: " + rootId);
+            rootElement = document.querySelector(rootId);
+        } else{
+            rootElement = document.getElementById(rootId);
+        }
+
 
         // render root element
         rootElement.innerHTML = '';
@@ -168,18 +176,15 @@ export class LinkHandler {
 /* It creates a new interactive element that can be used to update the DOM */
 export class Reactible{
     // create a new interactive element
-    constructor(value) {
+    constructor(value, callback = () => { }, element = 'span') {
         this.value = value;
         this.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        this.callback = callback;
+        this.element = element;
     }
     // get the element
     get(){
-        switch (typeof this.value) {
-            case 'string':
-                return `<span class="rube-${this.id}">${this.value}</span>`;
-            case 'number':
-                return `<span class="rube-${this.id}">${this.value}</span>`;
-        }
+        return `<${this.element} class="rube-${this.id}">${this.value}</${this.element}>`;
     }
     // get the current value
     getValue(){
@@ -190,8 +195,11 @@ export class Reactible{
         this.value = newValue;
         let element = document.querySelector(`.rube-${this.id}`);
         element.innerText = this.value; // this.value is the new value
+        this.callback();
     }
 }
+
+
 /**
  * It returns the value of a property from the `data-rubellite-props` attribute of the `#app` element
  * @param name - The name of the prop you want to get.

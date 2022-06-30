@@ -9,12 +9,12 @@
     <title></title>
     <link rel="stylesheet" href="app/css/global.css">
     <script src="app/Pages/<?= $_POST["js"] ?>.js" type="module"></script>
+
 </head>
 <body>
 <div id="app" data-rubellite-props='<?= json_encode($_POST["props"])  ?>'>
 
 </div>
-<script>
-</script>
+
 </body>
 </html>

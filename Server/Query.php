@@ -21,6 +21,11 @@ class QueryValidator{
         // filter the value to be an integer
         return filter_var($val, FILTER_SANITIZE_NUMBER_INT);
     }
+
+    // function that removes all characters that are not letters or numbers from a string
+    public static function string($val = ''){
+        return filter_var($val, FILTER_SANITIZE_STRING);
+    }
 }
 
 class Query {
