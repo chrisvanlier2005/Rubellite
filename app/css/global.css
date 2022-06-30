@@ -27,6 +27,14 @@ body{
 }
 .center img{
     width: 200px;
+    /* spin wobbly but reverse it everytime it goes */
+    animation: spin-wobbly 5s infinite ease-in-out reverse;
+}
+@keyframes spin-wobbly {
+    0% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+
 }
 .error{
     display: grid;

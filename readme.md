@@ -1,15 +1,14 @@
 # Rubellite
 a Simple PHP & JS library for building web applications.
-Inspired by Laravel & Ruby on Rails.
+
+This is not intented for any actual usage, its a learning experiment.
 
 
 <img src="public/img/logo.png" width="300">
 
 
-No documentation so it's a blind dive!
-
 ### Rubel Terminal Helper
-Rubel is your favorite robot helper, using
+Rubel Terminal Helper is a simple command line interface for Rubellite.
 
     php rubel.php fn=*command here*
 
