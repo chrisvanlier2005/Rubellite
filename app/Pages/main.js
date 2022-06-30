@@ -1,18 +1,19 @@
-import {Compiler, Reactible, VirtualDom} from "../framework/framework.js";
+import {Compiler, Reactible, VirtualDom, Props} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
 import {AddErrorHandler, Error } from "./Error.js";
 AddErrorHandler()
 
 // Reactible variables
 let x = new Reactible(1)
-
+let name = Props('name');
 function App(){
    return `
     ${Layout(` 
         <div class="center">
             <img class="addOne" src="public/img/logo.png" alt="">
-            <h1>Say hello world!</h1>
+            <h1>My new project</h1>
             ${x.get()}
+            <h2>${name}</h2>
             <button class="addOne">
              Add one
             </button>
@@ -25,7 +26,8 @@ function App(){
 `;
 }
 
-
+// start timer
+let start = new Date().getTime();
 window.history.pushState({}, "", "/Rubellite/");
 VirtualDom.render("app", Compiler.toObject(App()));
 
@@ -35,6 +37,8 @@ document.querySelectorAll(".addOne").forEach(element => {
         }
     );
 });
+let end = new Date().getTime();
+console.log(`Time: ${end - start}ms`);
 
 
 VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");

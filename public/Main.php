@@ -7,18 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="app/css/global.css">
-    <script src="app/Pages/<?= $_POST["js"]?>.js" type="module"></script>
-
+    <script src="app/Pages/<?= $_POST["js"] ?>.js" type="module"></script>
 </head>
 <body>
-<div id="app">
+<div id="app" data-rubellite-props='<?= json_encode($_POST["props"])  ?>'>
 
 </div>
 <script>
-    <!-- These are the php props -->
-    <?php foreach ($_POST["props"] as $key => $value): ?>
-      let <?= $key ?> = "<?= $value ?>";
-    <?php endforeach; ?>
+    let props
 </script>
 </body>
 </html>

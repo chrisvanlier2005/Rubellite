@@ -9,7 +9,8 @@ class Config {
     public static $app = [
         'name' => 'Test',
         'version' => '1.0.0',
-        'root' => 'C:/xampp/htdocs/Rubellite'
+        'root' => 'C:/xampp/htdocs/Rubellite',
+        'web_adress' => 'http://localhost/Rubellite',
     ];
 }
 

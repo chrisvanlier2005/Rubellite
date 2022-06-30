@@ -141,6 +141,8 @@ export class LinkHandler {
 
         // getting the page script
         let script = html.match(/<script[^>]*>([\s\S]*?)<\/script>/gi);
+        console.log(script);
+
         let src = script[0].match(/src="([^"]*)"/i);
         src = src[1]
         src = src + "?_=" + new Date().getTime();
@@ -156,11 +158,15 @@ export class LinkHandler {
         document.body.appendChild(scriptEl);
     }
 }
+
+/* It creates a new interactive element that can be used to update the DOM */
 export class Reactible{
+    // create a new interactive element
     constructor(value) {
         this.value = value;
         this.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
+    // get the element
     get(){
         switch (typeof this.value) {
             case 'string':
@@ -169,14 +175,27 @@ export class Reactible{
                 return `<span class="rube-${this.id}">${this.value}</span>`;
         }
     }
+    // get the current value
     getValue(){
         return this.value;
     }
+    // set the value
     set(newValue){
         this.value = newValue;
         let element = document.querySelector(`.rube-${this.id}`);
         element.innerText = this.value; // this.value is the new value
     }
 }
+/**
+ * It returns the value of a property from the `data-rubellite-props` attribute of the `#app` element
+ * @param name - The name of the prop you want to get.
+ * @returns The value of the data-rubellite-props attribute of the element with the id of app.
+ */
+export function Props(name){
+    let props = document.querySelector('#app')
+    props = props.getAttribute("data-rubellite-props");
+    props = JSON.parse(props);
+    return props[name];
+}
 
-export default {VirtualDom, Compiler, LinkHandler, Reactible };
+
