@@ -29,6 +29,3 @@ $timer = microtime(true) - $timer;
 
 
 
-Route::get('/posts', function(){
-    WebRender::render('posts');
-});

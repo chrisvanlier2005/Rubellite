@@ -132,7 +132,7 @@ export class LinkHandler {
         location = location.replace('localhost', '');
         location = location.replace('http://', '');
         location = location.replace('https://', '');
-        location = "Rubellite" + location;
+        location = `${Props('config.name')}` + location;
 
         // get the page
         let rubelite = event.target.dataset.rubelite;
@@ -201,8 +201,6 @@ export function Props(name){
     let props = document.querySelector('#app')
     props = props.getAttribute("data-rubellite-props");
     props = JSON.parse(props);
-    console.log(props);
-
     if (name.indexOf(".") > -1){
         let values = name.split(".");
         let value = props;

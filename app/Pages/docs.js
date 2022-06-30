@@ -1,4 +1,4 @@
-import {Compiler, Reactible, VirtualDom} from "../framework/framework.js";
+import {Compiler, Reactible, VirtualDom, Props} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
 import {AddErrorHandler, Error } from "./Error.js";
 AddErrorHandler()
@@ -15,7 +15,7 @@ function App(){
 }
 
 
-window.history.pushState({}, "", "/Rubellite/docs");
+window.history.pushState({}, "", `/${Props('config.name')}/docs`);
 VirtualDom.render("app", Compiler.toObject(App()));
 
 document.querySelectorAll(".addOne").forEach(element => {

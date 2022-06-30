@@ -7,7 +7,7 @@ class Config {
         'database' => 'test'
     ];
     public static $app = [
-        'name' => 'Test',
+        'name' => 'Rubellite',
         'version' => '1.0.0',
         'root' => 'C:/xampp/htdocs/Rubellite',
         'web_adress' => 'http://localhost/Rubellite',

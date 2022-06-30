@@ -12,7 +12,6 @@ class WebRender{
         $_POST['js'] = $view;
         $configVariables = Config::$app;
         $data['config'] = $configVariables;
-        $data['config']['other']['timer'] = microtime(true);
         $_POST['props'] = $data;
         include_once 'public/Main.php';
     }
