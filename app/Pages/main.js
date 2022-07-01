@@ -1,5 +1,4 @@
-// start timer
-let start = new Date().getTime();
+
 import {Compiler, Props, Reactible, VirtualDom} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
 import {AddErrorHandler} from "./Error.js";
@@ -40,10 +39,5 @@ document.querySelectorAll(".addOne").forEach(element => {
         }
     );
 });
-
-let end = new Date().getTime();
-// console log in seconds
-console.log("Started in " + (end - start) / 1000 + "s");
-
 
 VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");

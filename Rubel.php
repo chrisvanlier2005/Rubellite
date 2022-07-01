@@ -2,12 +2,54 @@
 /* Parsing the arguments passed to the script. */
 parse_str(implode('&', array_slice($argv, 1)), $_GET);
 
-switch ($_GET["fn"]){
-    case "create-route":
-        createRoute();
-        break;
-    default:
-        echo "Command does not exist";
+/* switching through the commands */
+if (isset($_GET["fn"])){
+    switch ($_GET["fn"]){
+        case "create-route":
+            createRoute();
+            break;
+            case "help":
+                listHelp();
+                break;
+        default:
+            echo "Command does not exist";
+    }
+} else {
+    echo "What do you want to do? (help or h for help)\n";
+    $handle = fopen("php://stdin", "r");
+    $line = fgets($handle);
+    $line = trim($line);
+    switch ($line){
+        case "create-route":
+            echo "What is the name of the route?\n";
+            $handle = fopen("php://stdin", "r");
+            $line = fgets($handle);
+            $line = trim($line);
+            $_GET["name"] = $line;
+            createRoute();
+            break;
+        case "h":
+        case "help":
+            listHelp();
+            break;
+        default:
+            echo "Command does not exist";
+    }
+}
+
+
+function listHelp(){
+    $commands = [
+        "create-route" => "Create a route",
+        "help / h" => "List all commands & descriptions"
+    ];
+    echo "List of commands:";
+    foreach ($commands as $command => $description){
+       // make the command red added to the end of the command
+        // echo a red box around the command
+
+        echo "\n\t\033[31m" . $command . "\033[0m" . " - " . $description;
+    }
 }
 
 /**
@@ -45,7 +87,7 @@ Route::get('/$name', function(){
 
     /* The boilerplate code that is written in every page. */
     $standard = "
-import {Compiler, Reactible, VirtualDom} from '../framework/framework.js'
+import {Compiler, Reactible, VirtualDom, Props} from '../framework/framework.js'
 import Layout from '../Components/Layout.js'
 import {AddErrorHandler, Error } from './Error.js';
 AddErrorHandler()
@@ -63,7 +105,7 @@ function App(){
 }
 
 
-window.history.pushState({}, '', '/Rubellite/$name');
+window.history.pushState({}, '', `/\${Props('config.name')}/$name`);
 VirtualDom.render('app', Compiler.toObject(App()));
 
 document.querySelectorAll('.addOne').forEach(element => {

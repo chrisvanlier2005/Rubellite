@@ -175,18 +175,32 @@ export class LinkHandler {
 
 /* It creates a new interactive element that can be used to update the DOM */
 export class Reactible{
-    // create a new interactive element
-    constructor(value, callback = () => { }, element = 'span') {
+    /**
+     * The constructor function takes in a value, an element, and a callback function. It then assigns the value to the
+     * value property, assigns a random id to the id property, assigns the callback function to the callback property, and
+     * assigns the element to the element property
+     * @param value - The value of the element.
+     * @param [element=span] - The element that will be created.
+     * @param [callback] - A function that will be called when the user clicks on the notification.
+     */
+    constructor(value, element = 'span', callback = () => { }) {
         this.value = value;
         this.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         this.callback = callback;
         this.element = element;
     }
-    // get the element
+
+    /**
+     * It returns a string of HTML code in the Initialized element.
+     * @returns The value of the element and the value of the id.
+     */
     get(){
         return `<${this.element} class="rube-${this.id}">${this.value}</${this.element}>`;
     }
-    // get the current value
+    /*
+    * getValue() returns the current value of the element
+    * a better way to do this would be to just call the value property, but this is a way to make it more flexible
+    * */
     getValue(){
         return this.value;
     }

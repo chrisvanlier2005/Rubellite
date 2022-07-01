@@ -1,39 +1,37 @@
 
 import {Compiler, Reactible, VirtualDom, Props} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
-import {AddErrorHandler, Error } from "./Error.js";
-import RubePopup from "../framework/RubePopup.js";
+import {AddErrorHandler } from "./Error.js";
 
-AddErrorHandler()
+AddErrorHandler();
 
-// Reactible variables
-let btn = new Reactible("Popup demo", () => {}, "button")
+
+let amountClicked = new Reactible(0, "span", () => {
+    console.log(amountClicked.value);
+});
+
+let btn = new Reactible("Popup demo",  "button", () => {
+    amountClicked.set(amountClicked.getValue() + 1);
+})
 
 function App(){
-   return `
+    return `
     ${Layout(` 
         ${btn.get()}
+        <p>You clicked me: ${amountClicked.get()} times</p>
     `)}
 `;
 }
 
-
+// this should be in all pages
 window.history.pushState({}, "", `/${Props('config.name')}/docs`);
 VirtualDom.render("app", Compiler.toObject(App()));
+VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");
 
 
 document.querySelector(`.rube-${btn.id}`).addEventListener("click", () => {
     btn.set("You clicked me!");
-    let popup = new RubePopup();
-    popup.show(`
-        <div class="popup">
-            <h1>Hello world</h1>
-            <p>This is a popup</p>
-        </div>
-    `);
-
 });
 
 
 
-VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");

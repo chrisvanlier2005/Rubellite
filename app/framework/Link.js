@@ -1,6 +1,6 @@
 /**
  * It returns a string of HTML that contains a link with a random id and a data attribute
- * @param props - An object containing the properties of the component.
+ * @param props - An object containing the properties of the component, required are: href, text
  * @returns A string of HTML
  */
 export let Link = (props) => {

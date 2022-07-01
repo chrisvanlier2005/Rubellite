@@ -1,9 +1,10 @@
-import {Link} from "../framework/Link.js";
+import { Link } from "../framework/Link.js";
 let Header = () => {
     let navLinks = [
         { text: "Rubellite", href: "/" },
         { text: "Docs", href: "/docs" },
-    ]
+    ];
+
     return `
     <style>
         .header{
