@@ -5,6 +5,7 @@ Class Route{
         'GET'=> [],
         'POST'=> []
     ];
+    /* Will record prefixes that will be used */
     public static $prefixes = [];
     /**
      * A function that takes in a url and an action. It then checks if the url is the same as the urlServer. If it is, it
@@ -18,7 +19,7 @@ Class Route{
         $urlServer = explode('?', $urlServer)[0];
         $urlServer = str_replace(Config::$app['root'], '', $urlServer);
 
-        if($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'POST'){
+        if($_SERVER['REQUEST_METHOD'] == 'GET'){
             if($urlServer == $url){
                 $action();
                 self::$routes['GET'][$url] = $action;
@@ -50,12 +51,30 @@ Class Route{
      */
     public static function post($url, $action){
         $urlServer = $_SERVER['REQUEST_URI'];
-        // remove everything after the ?
         $urlServer = explode('?', $urlServer)[0];
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $urlServer = str_replace(Config::$app['root'], '', $urlServer);
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST' ){
             if($urlServer == $url){
                 $action();
-                self::$routes['POST'][$url] = $action;
+                self::$routes['GET'][$url] = $action;
+            }
+            /* This is checking if the url that the user typed in the browser matches the prefix url. If it does, then it
+            will execute the action. */
+            foreach(self::$prefixes as $prefix){
+                // add the prefix to the url
+                $prefixUrl = $prefix . $url;
+                // make a backup url so if the uri contains a / or it does not it will still match the url
+                if (substr($prefixUrl, -1) == '/') {
+                    $prefixUrlBackUp = substr($prefixUrl, 0, -1);
+                } else {
+                    $prefixUrlBackUp = $prefixUrl . '/';
+                }
+                // if the url matches the prefix url or the backup url, execute the action
+                if($urlServer == $prefixUrl || $urlServer == $prefixUrlBackUp){
+                    $action();
+                    self::$routes['GET'][$url] = $action;
+                }
             }
         }
     }

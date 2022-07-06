@@ -2,7 +2,7 @@ import { Link } from "../framework/Link.js";
 let Header = () => {
     let navLinks = [
         { text: "Rubellite", href: "/" },
-        { text: "Docs", href: "/docs" },
+        { text: "Docs", href: "/docs?a=b" },
     ];
 
     return `

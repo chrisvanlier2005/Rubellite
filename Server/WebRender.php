@@ -12,6 +12,7 @@ class WebRender{
         $_POST['js'] = $view;
         $configVariables = Config::$app;
         $data['config'] = $configVariables;
+        $data['get'] = $_GET;
         $_POST['props'] = $data;
         include_once 'public/Main.php';
     }

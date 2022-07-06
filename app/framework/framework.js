@@ -242,4 +242,22 @@ export function Props(name){
     return props[name];
 }
 
-
+export class Http{
+    static setUrl(pageUri){
+        let urlProps = Props('get');
+        if (Object.keys(urlProps).length > 0){
+            pageUri += "?";
+            let length = Object.keys(urlProps).length;
+            let index = 0;
+            for(const prop in urlProps){
+                pageUri += `${prop}=${urlProps[prop]}&`
+                if (index === length--){
+                    // remove the last &
+                    pageUri = pageUri.slice(0, -1);
+                }
+                index++;
+            }
+        }
+        window.history.pushState({}, "", `/${Props('config.name')}/` + pageUri);
+    }
+}

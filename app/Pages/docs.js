@@ -1,5 +1,5 @@
 
-import {Compiler, Reactible, VirtualDom, Props} from "../framework/framework.js";
+import {Compiler, Reactible, VirtualDom, Props, Http} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
 import {AddErrorHandler } from "./Error.js";
 
@@ -24,7 +24,7 @@ function App(){
 }
 
 // this should be in all pages
-window.history.pushState({}, "", `/${Props('config.name')}/docs`);
+Http.setUrl('docs')
 VirtualDom.render("app", Compiler.toObject(App()));
 VirtualDom.setPageTitle("Rubellite  - A simple Library for PHP + JS");
 

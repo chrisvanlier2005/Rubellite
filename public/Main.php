@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app" data-rubellite-props='<?= json_encode($_POST["props"])  ?>'>
-
+    <noscript>This app requires javascript to run</noscript>
 </div>
 
 </body>

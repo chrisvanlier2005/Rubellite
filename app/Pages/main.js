@@ -1,11 +1,10 @@
 
-import {Compiler, Props, Reactible, VirtualDom} from "../framework/framework.js";
+import {Compiler, Props, Reactible, VirtualDom, Http} from "../framework/framework.js";
 import Layout from "../Components/Layout.js";
 import {AddErrorHandler} from "./Error.js";
 
 AddErrorHandler()
 
-// Reactible variables
 let x = new Reactible(1)
 
 function App() {
@@ -27,9 +26,8 @@ function App() {
     `)}
 `;
 }
+Http.setUrl('');
 
-
-window.history.pushState({}, "", `/${Props('config.name')}/`);
 VirtualDom.render("app", Compiler.toObject(App()));
 
 // after the render, you can do any vanilla javascript you want like this:
